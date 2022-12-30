@@ -7,3 +7,4 @@ This repository is built step by step in the tutorial.
 this is a small change
 
 **addig bold text**
+**new addig bold text**
