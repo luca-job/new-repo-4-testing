@@ -7,3 +7,6 @@ This repository is built step by step in the tutorial.
 this is a small change
 
 this exist only in MASTER branch
+=======
+**addig bold text**
+**new addig bold text**

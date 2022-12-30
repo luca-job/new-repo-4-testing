@@ -1,0 +1,276 @@
+<origin:content id="" source="manifest.mpd" 
+	xmlns:origin="http://rti.mediaset.it/farmunica/origin/"
+	xmlns:cms="http://rti.mediaset.it/farmunica/cms/"
+	xmlns:cmsInfty="http://rti.mediaset.it/farmunica/cms/#INFTY"	
+	xmlns:cmsPol="http://rti.mediaset.it/farmunica/cms/#POL"
+	xmlns:drm="http://rti.mediaset.it/farmunica/drm/"
+	version="6">
+	<!-- version 1: versione iniziale -->
+	<!-- version 2: cambiato parametro errato audioOnly in wantAudioOnly -->
+	<!-- version 3: aggiunti URL  -->
+	<!-- version 4: modificato tag cms per url con qry  -->
+	<!-- version 5: aggiunta BU Infinity  -->
+	<!-- version 6: BU ENB -->
+	<!-- 
+		Smooth Encrypted: Attenzione a non utilizzare gli stesi URL di contenuti giÃ  presenti nel legacy, cambia il licenser
+	-->
+	<origin:flavour format="smooth" encryption="cenc" subdir="smoothenc" id="smoothenc" require="wantEncrypted" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp">
+		<!-- OTT,MON -->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="smooth_hd_pr" cms:quality="HD" requireBu="OTT,MON" id="smooth_hd_pr_mpl" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx" drm="playready" licenserUrl="{laurl.mon}" manifest="hd_pr_mpl.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="smooth_sd_pr" cms:quality="SD" requireBu="OTT,MON" id="smooth_sd_pr_mpl" videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx" drm="playready" licenserUrl="{laurl.mon}" manifest="sd_pr_mpl.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="smooth_ss_pr" cms:quality="SD" requireBu="OTT,MON" id="smooth_ss_pr_mpl" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx" drm="playready" licenserUrl="{laurl.mon}" manifest="ss_pr_mpl.ism/manifest"/>
+		
+		<!-- POL, Manifesti con Query del tipo ?licenser={LICENSER}&quality={sd,hd,sd_ss,hd_ss}-->
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="second_ss_rc_qs_sd" cms:quality="SD" requireBu="POL" id="smooth_sd_pr_pol_2_qry" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="dynamic.ism/manifest?licenser=POL&amp;quality=sd_ss"/>
+		<origin:quality requireEncodingQuality="HD"    cms:tag="second_ss_rc_qs_hd" cms:quality="HD" requireBu="POL" id="smooth_hd_pr_pol_2_qry" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="dynamic.ism/manifest?licenser=POL&amp;quality=hd_ss"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="main_ss_rc_qs_sd"   cms:quality="SD" requireBu="POL" id="smooth_sd_pr_pol_qry"   videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="dynamic.ism/manifest?licenser=POL&amp;quality=sd"/>
+		<origin:quality requireEncodingQuality="HD"    cms:tag="main_ss_rc_qs_hd"   cms:quality="HD" requireBu="POL" id="smooth_hd_pr_pol_qry"   videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="dynamic.ism/manifest?licenser=POL&amp;quality=hd"/>
+		
+		<!-- INFTY -->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="main_ss_rc_hd"   cms:priority="1" cms:quality="HD" requireBu="INFTY" id="smooth_hd_pr_inf"    videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" manifest="hd_inf.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="main_ss_rc_sd"   cms:priority="1" cms:quality="SD" requireBu="INFTY" id="smooth_sd_pr_inf"    videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" manifest="sd_inf.ism/manifest"/>
+		<origin:quality requireEncodingQuality="HD"    cms:tag="second_ss_rc_hd" cms:priority="1" cms:quality="SD" requireBu="INFTY" id="smooth_ss_hd_pr_inf" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" manifest="hd_ss_inf.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="second_ss_rc_sd" cms:priority="1" cms:quality="SD" requireBu="INFTY" id="smooth_ss_sd_pr_inf" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" manifest="sd_ss_inf.ism/manifest"/>
+		
+		<!-- POL -->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="main_ss_rc_hd"   cms:priority="1" cms:quality="HD" requireBu="POL"   id="smooth_hd_pr_pol"    videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="hd_pol.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="main_ss_rc_sd"   cms:priority="1" cms:quality="SD" requireBu="POL"   id="smooth_sd_pr_pol"    videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="sd_pol.ism/manifest"/>
+		<origin:quality requireEncodingQuality="HD"    cms:tag="second_ss_rc_hd" cms:priority="1" cms:quality="SD" requireBu="POL"   id="smooth_ss_hd_pr_pol" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="hd_ss_pol.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="second_ss_rc_sd" cms:priority="1" cms:quality="SD" requireBu="POL"   id="smooth_ss_sd_pr_pol" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="guid-ns" drm="playready" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" manifest="sd_ss_pol.ism/manifest"/>
+	
+	</origin:flavour>
+
+	<!-- 
+		Smooth Clean 
+	-->
+	<origin:flavour format="smooth" subdir="smoothclean" require="wantClean" id="smooth_clean">
+		<!-- OTT + FRW + INFTY + POL -->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="smooth_hd_no" cmsInfty:tag="main_ss_rc_hd"   cmsInfty:priority="0" cmsPol:tag="main_ss_rc_hd"   cmsPol:priority="0" cms:quality="HD" requireBu="OTT,MON,FRW,INFTY,POL" id="smooth_hd_no_all" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_all.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="smooth_sd_no" cmsInfty:tag="main_ss_rc_sd"   cmsInfty:priority="0" cmsPol:tag="main_ss_rc_sd"   cmsPol:priority="0" cms:quality="SD" requireBu="OTT,MON,FRW,INFTY,POL" id="smooth_sd_no_all" videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_all.ism/manifest"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="smooth_ss_no" cmsInfty:tag="second_ss_rc_sd" cmsInfty:priority="0" cmsPol:tag="second_ss_rc_sd" cmsPol:priority="0" cms:quality="SD" requireBu="OTT,MON,FRW,INFTY,POL" id="smooth_ss_no_all" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_all.ism/manifest"/>
+		
+		<!-- Only INFTY + POL-->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="second_ss_rc_hd"                             cms:priority="0"      cms:quality="SD" requireBu="INFTY,POL" id="smooth_ss_hd_no_all" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"                   manifest="ss_hd_no_all.ism/manifest"/>
+		
+		<!-- ENB -->
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="ss_preview"                                  cms:priority="0"      cms:quality="SD" requireBu="ENB"       id="smooth_preview"      videoLevels="sp_288"                                                     manifest="ss_preview.ism/manifest"/>
+	
+	</origin:flavour>
+
+	<!-- 
+		DASH Resolution Change Encrypted: Attenzione a non riutilizzare per Widevine URL giÃ  presenti nel legacy, altrimenti vengono sovrascritti: Widevine di MediasetPlay ha un pssh diverso!
+		I parametri li metto sulle quality e non sul flavour, altrimenti vengono applicati anche alle quality legacy dello stesso flavour
+	-->
+	<origin:flavour encryption="cenc" format="dash" subdir="dashrcenc" require="wantEncrypted" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp" ivSize="8">
+		<!-- OTT,MON -->
+		<origin:quality                 provider="mediasetplay" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="HD"    cms:tag="dashrc_hd_wv"              cms:quality="HD" requireBu="OTT,MON"   id="dashrc_hd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="widevine"  manifest="hd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="mediasetplay" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_sd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx"         drm="widevine"  manifest="sd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="mediasetplay" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_ss_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_ss_wv_mpl"       videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx"         drm="widevine"  manifest="ss_wv_mpl.mpd"                                                                                      />
+    <origin:quality                 provider="mediasetitalia" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="HD"    cms:tag="dashrc_hd_wv"              cms:quality="HD" requireBu="OTT,MON"   id="dashrc_hd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="widevine"  manifest="hd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="mediasetitalia" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_sd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx"         drm="widevine"  manifest="sd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="mediasetitalia" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_ss_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_ss_wv_mpl"       videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx"         drm="widevine"  manifest="ss_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="infautore" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="HD"    cms:tag="dashrc_hd_wv"              cms:quality="HD" requireBu="OTT,MON"   id="dashrc_hd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="widevine"  manifest="hd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="infautore" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_sd_wv_mpl"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx"         drm="widevine"  manifest="sd_wv_mpl.mpd"                                                                                      />
+		<origin:quality                 provider="infautore" dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_ss_wv"              cms:quality="SD" requireBu="OTT,MON"   id="dashrc_ss_wv_mpl"       videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx"         drm="widevine"  manifest="ss_wv_mpl.mpd"                                                                                      />
+      <origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="HD"    cms:tag="dashrc_hd_pr_hbbtv"        cms:quality="HD" requireBu="OTT,MON"   id="dashrc_hd_pr_hbbtv_mpl" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="playready" manifest="hd_pr_mpl_hbbtv.mpd" licenserUrl="{laurl.mon}"                />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_pr_hbbtv"        cms:quality="SD" requireBu="OTT,MON"   id="dashrc_sd_pr_hbbtv_mpl" videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx"         drm="playready" manifest="sd_pr_mpl_hbbtv.mpd" licenserUrl="{laurl.mon}"                />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_ss_pr_hbbtv"        cms:quality="SD" requireBu="OTT,MON"   id="dashrc_ss_pr_hbbtv_mpl" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx"         drm="playready" manifest="ss_pr_mpl_hbbtv.mpd" licenserUrl="{laurl.mon}"                />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="HD"    cms:tag="dashrc_hd_ml_hbbtv"        cms:quality="HD" requireBu="OTT,MON"   id="dashrc_hd_ml_hbbtv_mpl" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="marlin"    manifest="hd_ml_mpl_hbbtv.mpd"                                                                                />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true"                  requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_ml_hbbtv"        cms:quality="SD" requireBu="OTT,MON"   id="dashrc_sd_ml_hbbtv_mpl" videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx"         drm="marlin"    manifest="sd_ml_mpl_hbbtv.mpd"                                                                                />
+		<!-- INFTY -->                                                                                                                                                                                                                                                                                                                                
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_1"         cms:quality="HD" requireBu="INFTY" id="dashrc_hd_pr_inf"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="guid-ns"        drm="playready" manifest="hd_pr_inf.mpd"       licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_1"         cms:quality="SD" requireBu="INFTY" id="dashrc_sd_pr_inf"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="guid-ns"        drm="playready" manifest="sd_pr_inf.mpd"       licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_1"       cms:quality="HD" requireBu="INFTY" id="dashrc_ss_hd_pr_inf"    videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="guid-ns"        drm="playready" manifest="ss_hd_pr_inf.mpd"    licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_1"       cms:quality="SD" requireBu="INFTY" id="dashrc_ss_sd_pr_inf"    videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="guid-ns"        drm="playready" manifest="ss_sd_pr_inf.mpd"    licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx" />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_2"         cms:quality="HD" requireBu="INFTY" id="dashrc_hd_wv_inf"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.infty" drm="widevine"  manifest="hd_wv_inf.mpd"                                                                                      />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_2"         cms:quality="SD" requireBu="INFTY" id="dashrc_sd_wv_inf"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="keydb.infty" drm="widevine"  manifest="sd_wv_inf.mpd"                                                                                      />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_2"       cms:quality="HD" requireBu="INFTY" id="dashrc_ss_hd_wv_inf"    videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="keydb.infty" drm="widevine"  manifest="ss_hd_wv_inf.mpd"                                                                                   />
+		<origin:quality                                                                                              cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_2"       cms:quality="SD" requireBu="INFTY" id="dashrc_ss_sd_wv_inf"    videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="keydb.infty" drm="widevine"  manifest="ss_sd_wv_inf.mpd"                                                                                   />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true" cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_ml_hbbtv"  cms:quality="HD" requireBu="INFTY" id="dashrc_hd_ml_hbbtv_inf" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.infty" drm="marlin"   manifest="hd_ml_inf_hbbtv.mpd"                                                                        />
+		<origin:quality profile="hbbtv"                         dashTimeline="true" dashEnableCencDeclaration="true" cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_ml_hbbtv"  cms:quality="SD" requireBu="INFTY" id="dashrc_sd_ml_hbbtv_inf" videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="keydb.infty" drm="marlin"   manifest="sd_ml_inf_hbbtv.mpd"                                                                        />
+		
+		<!-- POL -->
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_1"   cms:quality="HD" requireBu="POL"   id="dashrc_hd_pr_pol"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="guid-ns"        drm="playready" manifest="hd_pr_pol.mpd"    licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_1"   cms:quality="SD" requireBu="POL"   id="dashrc_sd_pr_pol"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="guid-ns"        drm="playready" manifest="sd_pr_pol.mpd"    licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_1" cms:quality="HD" requireBu="POL"   id="dashrc_ss_hd_pr_pol"    videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="guid-ns"        drm="playready" manifest="ss_hd_pr_pol.mpd" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_1" cms:quality="SD" requireBu="POL"   id="dashrc_ss_sd_pr_pol"    videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="guid-ns"        drm="playready" manifest="ss_sd_pr_pol.mpd" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx" />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_2"   cms:quality="HD" requireBu="POL"   id="dashrc_hd_wv_pol"       videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.pol" drm="widevine"  manifest="hd_wv_pol.mpd"    />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_2"   cms:quality="SD" requireBu="POL"   id="dashrc_sd_wv_pol"       videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="keydb.pol" drm="widevine"  manifest="sd_wv_pol.mpd"    />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_2" cms:quality="HD" requireBu="POL"   id="dashrc_ss_hd_wv_pol"    videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              drm:keyIngest="keydb.pol" drm="widevine"  manifest="ss_hd_wv_pol.mpd" />
+		<origin:quality                                                                             cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_2" cms:quality="SD" requireBu="POL"   id="dashrc_ss_sd_wv_pol"    videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="keydb.pol" drm="widevine"  manifest="ss_sd_wv_pol.mpd" />
+	</origin:flavour>
+
+	<!-- 
+		DASH Resolution Change Clean. Attenzione a non mettere parametri su flavour, perche' questa e' una directory con contenuti legacy, che non possiamo cambiare (hlsDefault...) 
+	-->
+	<origin:flavour format="dash" subdir="dashrcclean" require="wantClean" id="dash_clean">
+		<!-- OTT -->
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="HD"                     cms:tag="dashrc_hd_no"              cms:quality="HD" requireBu="OTT,MON" id="dashrc_hd_no_mpl"         videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_mpl.mpd"/>
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_sd_no"              cms:quality="SD" requireBu="OTT,MON" id="dashrc_sd_no_mpl"         videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_mpl.mpd"/>
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_ss_no"              cms:quality="SD" requireBu="OTT,MON" id="dashrc_ss_no_mpl"         videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_mpl.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="HD"                     cms:tag="dashrc_hd_no_hbbtv"        cms:quality="HD" requireBu="OTT,MON" id="dashrc_hd_no_mpl_hbbtv"   videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_mpl_hbbtv.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_sd_no_hbbtv"        cms:quality="SD" requireBu="OTT,MON" id="dashrc_sd_no_mpl_hbbtv"   videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_mpl_hbbtv.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_ss_no_hbbtv"        cms:quality="SD" requireBu="OTT,MON" id="dashrc_ss_no_mpl_hbbtv"   videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_mpl_hbbtv.mpd"/>
+		<!-- FRW -->                                                                                                                                                                                           
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="HD"                     cms:tag="dashrc_hd_no"              cms:quality="HD" requireBu="FRW" id="dashrc_hd_no_frw"         videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_frw.mpd"/>
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_sd_no"              cms:quality="SD" requireBu="FRW" id="dashrc_sd_no_frw"         videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_frw.mpd"/>
+		<origin:quality                 dashTimeline="true" requireEncodingQuality="SD,HD"                  cms:tag="dashrc_ss_no"              cms:quality="SD" requireBu="FRW" id="dashrc_ss_no_frw"         videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_frw.mpd"/>
+		<!-- INFTY -->                                                                                                                          
+		<origin:quality                                     requireEncodingQuality="HD"    cms:priority="0" cms:tag="main_dash_rc_hd_1"         cms:quality="HD" requireBu="INFTY" id="dashrc_hd_no_inf_1"     videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_inf_1.mpd"    />
+		<origin:quality                                     requireEncodingQuality="SD,HD" cms:priority="0" cms:tag="main_dash_rc_sd_1"         cms:quality="SD" requireBu="INFTY" id="dashrc_sd_no_inf_1"     videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_inf_1.mpd"    />
+		<origin:quality                                     requireEncodingQuality="HD"    cms:priority="0" cms:tag="second_dash_rc_hd_1"       cms:quality="HD" requireBu="INFTY" id="dashrc_ss_hd_no_inf_1"  videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              manifest="ss_hd_no_inf_1.mpd" />
+		<origin:quality                                     requireEncodingQuality="SD,HD" cms:priority="0" cms:tag="second_dash_rc_sd_1"       cms:quality="SD" requireBu="INFTY" id="dashrc_ss_sd_no_inf_1"  videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_sd_no_inf_1.mpd" />
+		<origin:quality                                     requireEncodingQuality="HD"    cms:priority="0" cms:tag="main_dash_rc_hd_2"         cms:quality="HD" requireBu="INFTY" id="dashrc_hd_no_inf_2"     videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_inf_2.mpd"    />
+		<origin:quality                                     requireEncodingQuality="SD,HD" cms:priority="0" cms:tag="main_dash_rc_sd_2"         cms:quality="SD" requireBu="INFTY" id="dashrc_sd_no_inf_2"     videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_inf_2.mpd"    />
+		<origin:quality                                     requireEncodingQuality="HD"    cms:priority="0" cms:tag="second_dash_rc_hd_2"       cms:quality="HD" requireBu="INFTY" id="dashrc_ss_hd_no_inf_2"  videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              manifest="ss_hd_no_inf_2.mpd" />
+		<origin:quality                                     requireEncodingQuality="SD,HD" cms:priority="0" cms:tag="second_dash_rc_sd_2"       cms:quality="SD" requireBu="INFTY" id="dashrc_ss_sd_no_inf_2"  videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_sd_no_inf_2.mpd" />
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="HD"    cms:priority="1" cms:tag="main_dash_rc_hd_ml_hbbtv"  cms:quality="HD" requireBu="INFTY" id="dashrc_hd_no_hbbtv_inf" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_inf_hbbtv.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="SD,HD" cms:priority="1" cms:tag="main_dash_rc_sd_ml_hbbtv"  cms:quality="SD" requireBu="INFTY" id="dashrc_sd_no_hbbtv_inf" videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_inf_hbbtv.mpd"/>
+		<!-- POL -->
+		<origin:quality                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_1"   cms:quality="HD" requireBu="POL" id="dashrc_hd_no_pol_1"    videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_pol_1.mpd"    />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_1"   cms:quality="SD" requireBu="POL" id="dashrc_sd_no_pol_1"    videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_pol_1.mpd"    />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_1" cms:quality="HD" requireBu="POL" id="dashrc_ss_hd_no_pol_1" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              manifest="ss_hd_no_pol_1.mpd" />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_1" cms:quality="SD" requireBu="POL" id="dashrc_ss_sd_no_pol_1" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_sd_no_pol_1.mpd" />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_dash_rc_hd_2"   cms:quality="HD" requireBu="POL" id="dashrc_hd_no_pol_2"    videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_pol_2.mpd"    />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_dash_rc_sd_2"   cms:quality="SD" requireBu="POL" id="dashrc_sd_no_pol_2"    videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_pol_2.mpd"    />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="second_dash_rc_hd_2" cms:quality="HD" requireBu="POL" id="dashrc_ss_hd_no_pol_2" videoLevels="sp_288,sp_432,sp_576_0,sp_720_0,sp_720_1"              manifest="ss_hd_no_pol_2.mpd" />
+		<origin:quality                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="second_dash_rc_sd_2" cms:quality="SD" requireBu="POL" id="dashrc_ss_sd_no_pol_2" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_sd_no_pol_2.mpd" />
+	</origin:flavour>
+	
+	<!-- 
+		DASH Resolution Change Clean. Per il flag wantSpecial
+	-->
+	<origin:flavour format="dash" subdir="dashrcclean" require="wantEncrypted &amp;&amp; wantSpecial" id="dash_clean">
+		<!-- OTT -->
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="HD"    cms:tag="dashrc_hd_no_hbbtv" cms:quality="HD" requireBu="OTT,MON" id="dashrc_hd_no_mpl_hbbtv" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_mpl_hbbtv.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="SD,HD" cms:tag="dashrc_sd_no_hbbtv" cms:quality="SD" requireBu="OTT,MON" id="dashrc_sd_no_mpl_hbbtv" videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_mpl_hbbtv.mpd"/>
+		<origin:quality profile="hbbtv" dashTimeline="true" requireEncodingQuality="SD,HD" cms:tag="dashrc_ss_no_hbbtv" cms:quality="SD" requireBu="OTT,MON" id="dashrc_ss_no_mpl_hbbtv" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_mpl_hbbtv.mpd"/>
+	
+	</origin:flavour>
+
+	<!-- 
+		DASH Fixed Resolution Encrypted: Attenzione a non riutilizzare per Widevine URL giÃ  presenti nel legacy, altrimenti vengono sovrascritti: Widevine di MediasetPlay hanno la timeline!
+		I parametri li metto sulle quality e non sul flavour, altrimenti vengono applicati anche alle quality legacy dello stesso flavour
+	-->
+	<origin:flavour encryption="cenc" format="dash" subdir="dashnrcenc" require="wantEncrypted" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp" >
+		<!-- OTT -->
+		<origin:quality                  requireEncodingQuality="HD"    cms:tag="dashnrc_hd_ml"    cms:quality="HD" requireBu="OTT,MON"   id="dashnrc_hd_ml_mpl"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx"         drm="marlin" manifest="hd_ml_mpl.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD" cms:tag="dashnrc_sd_ml"    cms:quality="SD" requireBu="OTT,MON"   id="dashnrc_sd_ml_mpl"    videoLevels="sp_576_0,sp_576_1"                       drm:keyIngest="mpx"         drm="marlin" manifest="sd_ml_mpl.mpd"/>
+		<!-- INFTY -->
+		<origin:quality cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_nrc_hd" cms:quality="HD" requireBu="INFTY" id="dashnrc_hd_ml_inf"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.infty" drm="marlin" manifest="hd_ml_inf.mpd"/>
+		<origin:quality cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_nrc_sd" cms:quality="SD" requireBu="INFTY" id="dashnrc_sd_ml_inf"    videoLevels="sp_576_0,sp_576_1"                       drm:keyIngest="keydb.infty" drm="marlin" manifest="sd_ml_inf.mpd"/>
+		<origin:quality                  requireEncodingQuality="HD"                               cms:quality="HD" requireBu="INFTY" id="dashnrc_hd_ml_lg_inf" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.infty" drm="marlin" manifest="lg_hd_ml_inf.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD"                            cms:quality="SD" requireBu="INFTY" id="dashnrc_sd_ml_lg_inf" videoLevels="sp_576_0,sp_576_1"                       drm:keyIngest="keydb.infty" drm="marlin" manifest="lg_sd_ml_inf.mpd"/>
+		<!-- POL -->
+		<origin:quality cms:priority="1" requireEncodingQuality="HD"    cms:tag="main_dash_nrc_hd" cms:quality="HD" requireBu="POL"   id="dashnrc_hd_ml_pol"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.pol"   drm="marlin" manifest="hd_ml_pol.mpd"/>
+		<origin:quality cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="main_dash_nrc_sd" cms:quality="SD" requireBu="POL"   id="dashnrc_sd_ml_pol"    videoLevels="sp_576_0,sp_576_1"                       drm:keyIngest="keydb.pol"   drm="marlin" manifest="sd_ml_pol.mpd"/>
+		<origin:quality                  requireEncodingQuality="HD"                               cms:quality="HD" requireBu="POL"   id="dashnrc_hd_ml_lg_pol" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="keydb.pol"   drm="marlin" manifest="lg_hd_ml_pol.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD"                            cms:quality="SD" requireBu="POL"   id="dashnrc_sd_ml_lg_pol" videoLevels="sp_576_0,sp_576_1"                       drm:keyIngest="keydb.pol"   drm="marlin" manifest="lg_sd_ml_pol.mpd"/>
+	
+	</origin:flavour>
+
+	<!-- 
+		DASH Fixed Resolution Clean. Attenzione a non mettere parametri su flavour, perche' questa e' una directory con contenuti legacy, che non possiamo cambiare (hlsDefault...) 
+	-->
+	<origin:flavour format="dash" subdir="dashnrcclean" require="wantClean || wantSpecial" id="dash_clean">
+		<!-- OTT -->
+		<origin:quality                  requireEncodingQuality="HD"    cms:tag="dashnrc_hd_no"    cms:quality="HD" requireBu="OTT,MON"   id="dashnrc_hd_no_mpl"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_mpl.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD" cms:tag="dashnrc_sd_no"    cms:quality="SD" requireBu="OTT,MON"   id="dashnrc_sd_no_mpl"    videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_mpl.mpd"/>
+		<!-- INFTY -->
+		<origin:quality cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_dash_nrc_hd" cms:quality="HD" requireBu="INFTY" id="dashnrc_hd_no_inf"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_inf.mpd"/>
+		<origin:quality cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_dash_nrc_sd" cms:quality="SD" requireBu="INFTY" id="dashnrc_sd_no_inf"    videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_inf.mpd"/>
+		<origin:quality                  requireEncodingQuality="HD"                               cms:quality="HD" requireBu="INFTY" id="dashnrc_hd_no_lg_inf" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="lg_hd_no_inf.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD"                            cms:quality="SD" requireBu="INFTY" id="dashnrc_sd_no_lg_inf" videoLevels="sp_576_0,sp_576_1"                       manifest="lg_sd_no_inf.mpd"/>
+		<!-- POL -->
+		<origin:quality cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_dash_nrc_hd" cms:quality="HD" requireBu="POL" id="dashnrc_hd_no_pol"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_pol.mpd"/>
+		<origin:quality cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_dash_nrc_sd" cms:quality="SD" requireBu="POL" id="dashnrc_sd_no_pol"    videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_pol.mpd"/>
+		<origin:quality                  requireEncodingQuality="HD"                               cms:quality="HD" requireBu="POL" id="dashnrc_hd_no_lg_pol" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="lg_hd_no_pol.mpd"/>
+		<origin:quality                  requireEncodingQuality="SD,HD"                            cms:quality="SD" requireBu="POL" id="dashnrc_sd_no_lg_pol" videoLevels="sp_576_0,sp_576_1"                       manifest="lg_sd_no_pol.mpd"/>
+		<!-- ENB -->
+		<origin:quality cms:priority="0" requireEncodingQuality="HD"    cms:tag="dash_hbbtv_hd"    cms:quality="HD" requireBu="ENB" id="dashnrc_hd_no_enb_1"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_enb_1.mpd"/>
+		<origin:quality cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="dash_hbbtv_sd"    cms:quality="SD" requireBu="ENB" id="dashnrc_sd_no_enb_1"    videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_enb_1.mpd"/>
+		<origin:quality cms:priority="0" requireEncodingQuality="HD"    cms:tag="dash_mhp_hd"      cms:quality="HD" requireBu="ENB" id="dashnrc_hd_no_enb_2"    videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_enb_2.mpd"/>
+		<origin:quality cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="dash_mhp_sd"      cms:quality="SD" requireBu="ENB" id="dashnrc_sd_no_enb_2"    videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_enb_2.mpd"/>
+	
+	</origin:flavour>
+
+	<!--
+		HLS Clean NO resolution change. Attenzione che questa cartella Ã¨ condivisa con i contenuti legacy e deve avere come parametro aacEncapsulation="latm"
+	-->
+	<origin:flavour format="hls" aacEncapsulation="latm" subdir="hlsnrcclean" require="wantClean" id="hlsnrcclean">
+		<!-- FRW -->
+		<origin:quality                                                                                     requireEncodingQuality="SD,HD" cms:tag="hlsnrc_sd_no"    id="hlsnrc_sd_no_frw" cms:quality="SD" requireBu="FRW"   videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_frw.m3u8"/>
+		<!-- INFTY -->
+		<origin:quality                                                                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_hls_nrc_hd" id="hlsnrc_hd_no_inf" cms:quality="HD" requireBu="INFTY" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_inf.m3u8"/>
+		<origin:quality                                                                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_hls_nrc_sd" id="hlsnrc_sd_no_inf" cms:quality="SD" requireBu="INFTY" videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_inf.m3u8"/>
+		<!-- POL -->
+		<origin:quality                                                                    cms:priority="0" requireEncodingQuality="HD"    cms:tag="main_hls_nrc_hd" id="hlsnrc_hd_no_pol" cms:quality="HD" requireBu="POL" videoLevels="sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_pol.m3u8"/>
+		<origin:quality                                                                    cms:priority="0" requireEncodingQuality="SD,HD" cms:tag="main_hls_nrc_sd" id="hlsnrc_sd_no_pol" cms:quality="SD" requireBu="POL" videoLevels="sp_576_0,sp_576_1"                       manifest="sd_no_pol.m3u8"/>
+		
+	</origin:flavour>
+
+	<!-- 
+		HLS Fairplay. Non Ã¨ cosÃ¬ importante che ci sia qualcosa del tipo: "skd://{contentId}". Puo' essere anche "skd://".
+		Forse Ã¨ meglio chiamare la directory hlsrc_enc_aapl o hlsrc_enc_fpl o hlsrc_enc_splaes o hlsrc_sampleaes
+	-->
+	<origin:flavour format="hls" encryption="sample-aes" subdir="hlsrc_sampleaes" require="wantEncrypted" id="hlsrc_mpl" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp">
+		<!-- OTT -->
+		<origin:quality hlsExtXMedia="true" requireEncodingQuality="HD"    cms:tag="hlsrc_hd_fp" id="hlsrc_hd_fp_mpl" cms:quality="HD" requireBu="OTT,MON" wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" drm:keyIngest="mpx" drm="fairplay" licenserUrl="skd://{contentId}" manifest="hd_fp_mpl.m3u8"/>
+		<origin:quality hlsExtXMedia="true" requireEncodingQuality="SD,HD" cms:tag="hlsrc_sd_fp" id="hlsrc_sd_fp_mpl" cms:quality="SD" requireBu="OTT,MON" wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_576_1"                              drm:keyIngest="mpx" drm="fairplay" licenserUrl="skd://{contentId}" manifest="sd_fp_mpl.m3u8"/>
+		<origin:quality hlsExtXMedia="true" requireEncodingQuality="SD,HD" cms:tag="hlsrc_ss_fp" id="hlsrc_ss_fp_mpl" cms:quality="SD" requireBu="OTT,MON" wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0"                                drm:keyIngest="mpx" drm="fairplay" licenserUrl="skd://{contentId}" manifest="ss_fp_mpl.m3u8"/>
+	
+	</origin:flavour>
+	
+	<!--
+		HLS Playready INFTY
+	-->
+	<origin:flavour format="hls" encryption="playready" subdir="hlspr_inf" id="hlsprinf" require="wantEncrypted" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp" licenserUrl="https://licensingprep.infinitytv.it/PlayReady/rightsmanager.asmx">
+		<!-- INFTY -->
+		<origin:quality cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_hls_rc" cms:quality="SD" requireBu="INFTY" id="hls_sd_pr_inf" wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0" drm:keyIngest="guid-ns" drm="playready" manifest="inf.m3u8"/>
+	
+	</origin:flavour>
+	
+	<!--
+		HLS Playready POL
+	-->
+	<origin:flavour format="hls" encryption="playready" subdir="hlspr_pol" id="hlsprpol" require="wantEncrypted" keyManagerProfile="infinityPreprod" drm:keyIngest="mskeydb.pp" licenserUrl="https://licenserpre.mediasetpremium.it/PlayReadyLicenser/rightsmanager.asmx">
+		<!-- POL -->
+		<origin:quality cms:priority="1" requireEncodingQuality="SD,HD" cms:tag="second_hls_rc" cms:quality="SD" requireBu="POL" id="hls_sd_pr_pol" wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0" drm:keyIngest="guid-ns" drm="playready" manifest="pol.m3u8"/>
+	
+	</origin:flavour>
+
+	<!-- 
+		HLS Clean. Attenzione a non mettere parametri su flavour, perche' questa e' una directory con contenuti legacy, che non possiamo cambiare (hlsDefault...)
+		Gli URL devono essere cambiati per non collidere con i contenuti clean legacy, che *non* sono uguali Usiamo "v3" come nome anche se non e' proprio necessario.
+	-->
+	<origin:flavour format="hls" subdir="hlsrc" require="wantClean" id="hlsrc">
+		<!-- OTT -->
+		<origin:quality hlsExtXMedia="true" hlsDefaultExtXVersionStream="3" hlsDefaultExtXVersionMaster="3" requireEncodingQuality="HD"    cms:tag="hlsrc_hd_no"   id="hlsrc_hd_no_mpl" cms:quality="HD" requireBu="OTT,MON"   wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_mpl.m3u8"/>
+		<origin:quality hlsExtXMedia="true" hlsDefaultExtXVersionStream="3" hlsDefaultExtXVersionMaster="3" requireEncodingQuality="SD,HD" cms:tag="hlsrc_sd_no"   id="hlsrc_sd_no_mpl" cms:quality="SD" requireBu="OTT,MON"   wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_mpl.m3u8"/>
+		<origin:quality hlsExtXMedia="true" hlsDefaultExtXVersionStream="3" hlsDefaultExtXVersionMaster="3" requireEncodingQuality="SD,HD" cms:tag="hlsrc_ss_no"   id="hlsrc_ss_no_mpl" cms:quality="SD" requireBu="OTT,MON"   wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_mpl.m3u8"/>
+		<!-- FRW -->                                                                                                                                                                                                       
+		<origin:quality hlsExtXMedia="true" hlsDefaultExtXVersionStream="3" hlsDefaultExtXVersionMaster="3" requireEncodingQuality="HD"    cms:tag="hlsrc_hd_no"   id="hlsrc_hd_no_frw" cms:quality="HD" requireBu="FRW"   wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_720_0,sp_1080_1,sp_1080_2,sp_1080_3" manifest="hd_no_frw.m3u8"/>
+		<origin:quality hlsExtXMedia="true" hlsDefaultExtXVersionStream="3" hlsDefaultExtXVersionMaster="3" requireEncodingQuality="SD,HD" cms:tag="hlsrc_sd_no"   id="hlsrc_sd_no_frw" cms:quality="SD" requireBu="FRW"   wantAudioOnly="true" videoLevels="sp_432,sp_576_0,sp_576_1"                              manifest="sd_no_frw.m3u8"/>
+		<!-- INFTY -->
+		<origin:quality cms:priority="0"                                                                    requireEncodingQuality="SD,HD" cms:tag="second_hls_rc" id="hlsrc_sd_no_inf" cms:quality="SD" requireBu="INFTY" wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0"                                manifest="ss_no_inf.m3u8"/>
+		<!-- POL -->
+		<origin:quality cms:priority="0"                                                                    requireEncodingQuality="SD,HD" cms:tag="second_hls_rc" id="hlsrc_sd_no_pol" cms:quality="SD" requireBu="POL" wantAudioOnly="true" videoLevels="sp_288,sp_432,sp_576_0"                                  manifest="ss_no_pol.m3u8"/>
+	
+	</origin:flavour>
+	
+	<!--
+		HLS Clean NO resolution change. Attenzione che questa cartella Ã¨ condivisa con i contenuti legacy e deve avere come parametro aacEncapsulation="latm"
+	-->
+	<origin:flavour format="hls" aacEncapsulation="latm" subdir="hlsnrcclean" require="wantClean" id="hlsnrcclean">
+		<!-- FRW -->
+		<origin:quality                                                                                     requireEncodingQuality="SD,HD" cms:tag="hlsnrc_sd_no" id="hlsnrc_sd_no_frw" cms:quality="SD" requireBu="FRW"                       videoLevels="sp_576_0,sp_576_1"                                    manifest="sd_no_frw.m3u8"/>
+		
+	</origin:flavour>
+	
+	<origin:flavour format="mp4" subdir="mp4" require="wantMp4 || wantSpecial" id="mp4">
+		<!-- OTT -->
+		<origin:quality requireEncodingQuality="HD"    cms:tag="mp4_hd" id="mp4_hd_no_mpl" cms:quality="HD" requireBu="OTT,MON" videoLevels="sp_1080_1" manifest="hd_no_mpl.mp4"/>
+		<origin:quality requireEncodingQuality="SD,HD" cms:tag="mp4_sd" id="mp4_sd_no_mpl" cms:quality="SD" requireBu="OTT,MON" videoLevels="sp_432"    manifest="sd_no_mpl.mp4"/>
+	</origin:flavour>
+	
+</origin:content>
