@@ -1,0 +1,17 @@
+MyApp$1.class
+MyApp.class
+MyApp.java
+MyClass.class
+MyClass.java
+__pycache__
+class_example.py
+exceptional.py
+fibonaccy.py
+filelist.txt
+fm_2019-04-18.log
+squareroot.py
+tedif.py
+test.txt
+MyApp$1.class
+MyApp.class
+MyClass.class

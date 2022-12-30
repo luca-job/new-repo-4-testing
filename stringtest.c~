@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char word[20] = "input";
+  char out[20] = "";
+  int i;
+  int j=0;
+  for (i=strlen(word);i>0;i--){
+    word[j]=out[i];
+  }
+  printf("%s",out);
+}
